@@ -92,7 +92,7 @@ jobs:
     # Generates an execution plan for Terraform
     - name: Terraform Plan
       run: |
-       terraform plan -input=false -out="infra.tfplan" \
+       terraform plan -input=false -out=infra.tfplan \
        -var 'azure_client_id=${{ secrets.AZURE_CLIENT_ID }}' \
        -var 'azure_client_secret=${{ secrets.AZURE_CLIENT_SECRET }}' \
        -var 'azure_subscription_id=${{ secrets.AZURE_SUBSCRIPTION_ID }}' \
@@ -106,4 +106,8 @@ jobs:
     - name: Terraform Apply
       #if: github.ref == 'refs/heads/"main"' && github.event_name == 'push'
       run: |
-       terraform apply "infra.tfplan" -auto-approve 
+        terraform apply "infra.tfplan" -auto-approve \
+        -var 'azure_client_id=${{ secrets.AZURE_CLIENT_ID }}' \
+        -var 'azure_client_secret=${{ secrets.AZURE_CLIENT_SECRET }}' \
+        -var 'azure_subscription_id=${{ secrets.AZURE_SUBSCRIPTION_ID }}' \
+        -var 'azure_tenant_id=${{ secrets.AZURE_TENANT_ID }}'
