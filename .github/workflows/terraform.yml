@@ -91,10 +91,24 @@ jobs:
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
-      run: terraform plan -input=false -var 'vm_username=${{ secrets.VM_USER_NAME }}' -var 'vm_password=${{ secrets.VM_USER_PWD }}' 
+      run: |
+       terraform plan -input=false \
+       -var 'azure_client_id=${{ secrets.AZURE_CLIENT_ID }}' \
+       -var 'azure_client_secret=${{ secrets.AZURE_CLIENT_SECRET }}' \
+       -var 'azure_subscription_id=${{ secrets.AZURE_SUBSCRIPTION_ID }}' \
+       -var 'azure_tenant_id=${{ secrets.AZURE_TENANT_ID }}' \
+       -var 'vm_username=${{ secrets.VM_USER_NAME }}' \
+       -var 'vm_password=${{ secrets.VM_USER_PWD }}' 
 
       # On push to "main", build or change infrastructure according to Terraform configuration files
       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
     - name: Terraform Apply
       if: github.ref == 'refs/heads/"main"' && github.event_name == 'push'
-      run: terraform apply -auto-approve -input=false -var 'vm_username=${{ secrets.VM_USER_NAME }}' -var 'vm_password=${{ secrets.VM_USER_PWD }}'
+      run: |
+       terraform apply -auto-approve -input=false \ 
+        -var 'azure_client_id=${{ secrets.AZURE_CLIENT_ID }}' \
+        -var 'azure_client_secret=${{ secrets.AZURE_CLIENT_SECRET }}' \
+        -var 'azure_subscription_id=${{ secrets.AZURE_SUBSCRIPTION_ID }}' \
+        -var 'azure_tenant_id=${{ secrets.AZURE_TENANT_ID }}' \
+        -var 'vm_username=${{ secrets.VM_USER_NAME }}' \ 
+        -var 'vm_password=${{ secrets.VM_USER_PWD }}'
