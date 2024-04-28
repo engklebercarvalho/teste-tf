@@ -49,8 +49,8 @@ resource "azurerm_linux_virtual_machine" "example" {
   source_image_reference {
     publisher = "Canonical"
     offer     = "UbuntuServer"
-    sku       = "20.04-LTS"  # Atualizado para o SKU correto
-    version   = "latest"
+    sku       = "20_04-lts"  # Atualizado para o SKU correto
+    version   = "20.04.202010140"
   }
 }
 
