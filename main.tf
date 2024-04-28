@@ -60,11 +60,9 @@ resource "azurerm_linux_virtual_machine" "example" {
 variable "vm_username" {
   type        = string
   description = "Username for the virtual machine"
-  default     = "${var.VM_USER_NAME}"
 }
 
 variable "vm_password" {
   type        = string
   description = "Password for the virtual machine"
-  default     = "${var.VM_USER_PWD}"
 }
