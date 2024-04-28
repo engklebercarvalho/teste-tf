@@ -29,11 +29,12 @@ resource "azurerm_network_interface" "example" {
   }
 }
 
-resource "azurerm_virtual_machine" "example" {
+resource "azurerm_linux_virtual_machine" "example" {
   name                = "example-vm"
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_resource_group.example.location
   size                = "Standard_DS1_v2"
+  disable_password_authentication = false
   admin_username      = var.vm_username
   admin_password      = var.vm_password
   network_interface_ids = [
