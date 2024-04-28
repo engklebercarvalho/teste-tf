@@ -51,7 +51,6 @@ resource "azurerm_linux_virtual_machine" "example" {
     offer     = "0001-com-ubuntu-server-focal"
     sku       = "20_04-lts-gen2"  # Atualizado para o SKU correto
     version   = "20.04.202010140"
-    urn = "Canonical:0001-com-ubuntu-server-focal:20_04-lts-gen2:20.04.202010140"
   }
 }
 
