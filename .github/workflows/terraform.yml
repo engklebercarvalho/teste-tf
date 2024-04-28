@@ -55,13 +55,6 @@ permissions:
 jobs:
   terraform:
     name: 'Terraform'
-    env:
-     ARM_CLIENT_=ID: ${{ secrets.AZURE_CLIENT_ID }}
-     ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
-     ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-     ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-     VM_USER_NAME: ${{ secrets.VM_USER_NAME }}
-     VM_USER_PWD: ${{ secrets.VM_USER_PWD }}
     runs-on: ubuntu-latest
     environment: production
 
