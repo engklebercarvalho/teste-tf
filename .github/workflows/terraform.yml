@@ -59,7 +59,6 @@ env:
  ARM_TENANT_ID: "${{ secrets.AZURE_TENANT_ID }}"
  ARM_CLIENT_ID: "${{ secrets.AZURE_CLIENT_ID }}"
  ARM_CLIENT_SECRET: "${{ secrets.AZURE_CLIENT_SECRET }}"
- ACTION: "" #Usar 'Apply' para realizar o provisionamento ou 'Destroy' para realizar a destruição do ambiente.
  
 jobs:
   terraform:
@@ -69,12 +68,7 @@ jobs:
     env:
      TF_VAR_vm_user_name: ${{ secrets.VM_USER_NAME }}
      TF_VAR_vm_user_pwd: ${{ secrets.VM_USER_PWD }}
-
-     TF_VAR_resource_group_name: ${{ secrets.RESOURCE_GROUP_NAME }}
-     TF_VAR_storage_account_name: ${{ secrets.STORAGE_ACCOUNT_NAME }}
-     TF_VAR_container_name: ${{ secrets.CONTAINER_NAME }}
-     TF_VAR_key: ${{ secrets.KEY }}
-     
+     ACTION: ""
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
       run:
@@ -84,7 +78,11 @@ jobs:
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
       uses: actions/checkout@v4
-
+    
+    - name: Check Action
+      run: |
+       ACTION=$(cat action.conf)
+       echo "$ACTION"
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
@@ -108,9 +106,9 @@ jobs:
       # On push to "main", build or change infrastructure according to Terraform configuration files
       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
     - name: Terraform Apply
-      if: $(cat action.conf) == 'Apply'
+      if: ${{ACTION == 'Apply'}}
       run: terraform apply -auto-approve infra.tfplan
     
     - name: Terraform Destroy
-      if: $(cat action.conf) == 'Destroy'
+      if: ${{ACTION == 'Destroy'}}
       run: terraform destroy -auto-approve
