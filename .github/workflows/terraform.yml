@@ -110,9 +110,9 @@ jobs:
       # On push to "main", build or change infrastructure according to Terraform configuration files
       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
     - name: Terraform Apply
-      if: ${{ env.ACTION == 'Apply'}}
+      if: ${{ ACTION == 'Apply'}}
       run: terraform apply -auto-approve infra.tfplan
     
     - name: Terraform Destroy
-      if: ${{ env.ACTION == 'Destroy'}}
+      if: ${{ ACTION == 'Destroy'}}
       run: terraform destroy -auto-approve
