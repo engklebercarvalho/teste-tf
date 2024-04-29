@@ -14,6 +14,10 @@ terraform {
   }
 }
 
+provider "azurerm" {
+  features {}
+}
+
   # Update this block with the location of your terraform state file
   backend "azurerm" {
     resource_group_name  = var.resource_group_name
@@ -23,9 +27,6 @@ terraform {
    
   }
 
-provider "azurerm" {
-  features {}
-}
 
 resource "azurerm_resource_group" "example" {
   name     = "example-resources"
