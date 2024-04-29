@@ -12,6 +12,7 @@ terraform {
       version = ">= 3.7.0"
     }
   }
+}
 
   # Update this block with the location of your terraform state file
   backend "azurerm" {
