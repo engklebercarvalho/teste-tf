@@ -76,9 +76,11 @@ resource "azurerm_linux_virtual_machine" "example" {
 variable "vm_username" {
   type        = string
   description = "Username for the virtual machine"
+  value = <vm_user_name>
 }
 
 variable "vm_password" {
   type        = string
   description = "Password for the virtual machine"
+  value = <vm_user_pwd>
 }
