@@ -59,7 +59,7 @@ env:
  ARM_TENANT_ID: "${{ secrets.AZURE_TENANT_ID }}"
  ARM_CLIENT_ID: "${{ secrets.AZURE_CLIENT_ID }}"
  ARM_CLIENT_SECRET: "${{ secrets.AZURE_CLIENT_SECRET }}"
- ACTION: Destroy #Usar 'Apply' para realizar o provisionamento ou 'Destroy' para realizar a destruição do ambiente.
+ ACTION: "" #Usar 'Apply' para realizar o provisionamento ou 'Destroy' para realizar a destruição do ambiente.
  
 jobs:
   terraform:
@@ -82,6 +82,12 @@ jobs:
     steps:
      
     # Checkout the repository to the GitHub Actions runner
+    - name: Check Action
+      run: |
+       cat action.conf
+       env.Action = $(<action.conf)
+       echo "$env.Action"
+    
     - name: Checkout
       uses: actions/checkout@v4
 
@@ -93,9 +99,7 @@ jobs:
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
-      run: |
-       cat backend.conf | grep key
-       terraform init -backend-config=backend.conf
+      run: terraform init -backend-config=backend.conf
 
     # Checks that all Terraform configuration files adhere to a canonical format
     #- name: Terraform Format
