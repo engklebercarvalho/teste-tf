@@ -51,6 +51,8 @@ on:
     branches: [ "main" ]
 permissions:
   contents: read
+  id-token: write
+  pull-requests: write
   
 env:
  ARM_SUBSCRIPTION_ID: "${{ secrets.AZURE_SUBSCRIPTION_ID }}"
