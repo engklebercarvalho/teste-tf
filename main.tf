@@ -11,7 +11,7 @@ terraform {
     resource_group_name  = "RG-MC"
     storage_account_name = "sakleberstatefile "
     container_name       = "tfstate"
-    key                  = "Mruylc5oylnoybbbjj4SnFRyiR+7c9vdlt5Hejmc/E62wN0R227Y6rsZvOMBLNdqZ9LZBEV3odM9+AStcqsF9Q=="
+    key                  = "1yB88JRCj+jeRKGFgtB5EJBuR3j7G+vCWR4sAIZJBtVVEqK8dHlV64dt6atyyM6MSsvbf3rIpBGh+AStLY40pA=="
     use_oidc             = true
   }
 }
