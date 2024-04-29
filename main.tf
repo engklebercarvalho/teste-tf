@@ -54,8 +54,8 @@ resource "azurerm_linux_virtual_machine" "example" {
   location            = azurerm_resource_group.example.location
   size                = "Standard_DS1_v2"
   disable_password_authentication = false
-  admin_username      = var.vm_username
-  admin_password      = var.vm_password
+  admin_username      = var.vm_user_name
+  admin_password      = var.vm_user_pwd
   network_interface_ids = [
     azurerm_network_interface.example.id,
   ]
@@ -73,14 +73,7 @@ resource "azurerm_linux_virtual_machine" "example" {
   }
 }
 
-variable "vm_username" {
-  type        = string
-  description = "Username for the virtual machine"
-  value = <vm_user_name>
-}
+variable "vm_user_name" { type = string }
 
-variable "vm_password" {
-  type        = string
-  description = "Password for the virtual machine"
-  value = <vm_user_pwd>
+variable "vm_user_pwd" { type = string }
 }
