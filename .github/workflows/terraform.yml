@@ -94,9 +94,9 @@ jobs:
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
       run: |
-       echo resource_group_name=$TF_VAR_resource_group_name >> backend2.conf
-       echo storage_account_name=$TF_VAR_storage_account_name >> backend2.conf
-       echo container_name=$TF_VAR_container_name >> backend2.conf
+       echo resource_group_name="\"$TF_VAR_resource_group_name"" >> backend2.conf
+       echo storage_account_name="\"$TF_VAR_storage_account_name"" >> backend2.conf
+       echo container_name="\"$TF_VAR_container_name" >> backend2.conf
        echo key="\"$TF_VAR_key\"" >> backend2.conf
        cat backend2.conf
        BACKEND_CONFIG=$(realpath backend2.conf)
