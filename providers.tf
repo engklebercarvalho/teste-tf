@@ -1,3 +1,8 @@
+variable "resource_group_name" { type = string }
+variable "storage_account_name" { type = string }
+variable "container_name" { type = string }
+variable "key" { type = string }
+
 terraform {
   required_providers {
     azurerm = {
@@ -8,10 +13,10 @@ terraform {
 
   # Update this block with the location of your terraform state file
   backend "azurerm" {
-    resource_group_name  = "RG-MC"
-    storage_account_name = "sakleberstatefile"
-    container_name       = "tfstate"
-    key                  = "1yB88JRCj+jeRKGFgtB5EJBuR3j7G+vCWR4sAIZJBtVVEqK8dHlV64dt6atyyM6MSsvbf3rIpBGh+AStLY40pA=="
+    resource_group_name  = var.resource_group_name
+    storage_account_name = var.storage_account_name
+    container_name       = var.container_name
+    key                  = var.key
    
   }
 }
