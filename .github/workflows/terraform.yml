@@ -51,16 +51,19 @@ on:
     branches: [ "main" ]
 permissions:
   contents: read
+  
+env:
+ ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+ ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+ ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+ ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+ 
 jobs:
   terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
     environment: production
     env:
-     ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-     ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-     ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-     ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
      TF_VAR_vm_user_name: ${{ secrets.VM_USER_NAME }}
      TF_VAR_vm_user_pwd: ${{ secrets.VM_USER_PWD }}
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
