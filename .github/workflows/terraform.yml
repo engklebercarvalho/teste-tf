@@ -98,6 +98,7 @@ jobs:
        echo storage_account_name = ${{ secrets.storage_account_name }} >> backend2.conf
        echo container_name       = ${{ secrets.container_name }} >> backend2.conf
        echo key                  = "${{ secrets.key }}" >> backend2.conf
+       echo " " >> backend2.conf
        cat backend2.conf
        BACKEND_CONFIG=$(realpath backend2.conf)
        echo $BACKEND_CONFIG 
