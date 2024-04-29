@@ -81,11 +81,7 @@ jobs:
         shell: bash
     steps:
     - name: Write Backend Config File
-      run: echo resource_group_name  = "RG-MC" >> backend2.conf \
-       echo storage_account_name = "sakleberstatefile" >> backend2.conf \
-       echo container_name       = "tfstate" >> backend2.conf \
-       echo key                  = "1yB88JRCj+jeRKGFgtB5EJBuR3j7G+vCWR4sAIZJBtVVEqK8dHlV64dt6atyyM6MSsvbf3rIpBGh+AStLY40pA==" >> backend2.conf \
-       cat backend2.conf
+      run: echo resource_group_name  = "RG-MC" >> backend2.conf | cat backend2.conf 
       
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
