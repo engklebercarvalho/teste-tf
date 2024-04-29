@@ -83,7 +83,7 @@ jobs:
     - name: Write Backend Config File
       run: |
        echo resource_group_name  = "RG-MC" >> backend2.conf | cat backend2.conf
-       BACKEND_CONFIG=realpath backend2.conf
+       BACKEND_CONFIG=$(realpath backend2.conf)
        echo $BACKEND_CONFIG
       
     # Checkout the repository to the GitHub Actions runner
