@@ -7,8 +7,17 @@ terraform {
   }
 }
 
+backend "azurerm" {
+    resource_group_name  = "RG-MC"
+    storage_account_name = "sakleberstatefile"
+    container_name       = "tfstate"
+    key                  = "terraform.tfstate"
+    use_oidc             = true
+  }
+
 provider "azurerm" {
   features {}
+  use_oidc = true
 }
 
 
