@@ -1,4 +1,6 @@
+variable "vm_user_name" { type = string }
 
+variable "vm_user_pwd" { type = string }
 
 
 resource "azurerm_resource_group" "example" {
@@ -57,6 +59,4 @@ resource "azurerm_linux_virtual_machine" "example" {
   }
 }
 
-variable "vm_user_name" { type = string }
 
-variable "vm_user_pwd" { type = string }
