@@ -98,7 +98,6 @@ jobs:
        echo storage_account_name=$TF_VAR_storage_account_name >> backend2.conf
        echo container_name=$TF_VAR_container_name >> backend2.conf
        echo key='"$TF_VAR_key'" >> backend2.conf
-       echo " " >> backend2.conf
        cat backend2.conf
        BACKEND_CONFIG=$(realpath backend2.conf)
        echo $BACKEND_CONFIG 
