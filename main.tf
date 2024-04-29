@@ -12,13 +12,13 @@ terraform {
     storage_account_name = "sakleberstatefile "
     container_name       = "tfstate"
     key                  = "1yB88JRCj+jeRKGFgtB5EJBuR3j7G+vCWR4sAIZJBtVVEqK8dHlV64dt6atyyM6MSsvbf3rIpBGh+AStLY40pA=="
-    use_oidc             = true
+   
   }
 }
 
 provider "azurerm" {
   features {}
-  use_oidc = true
+
 }
 
 
