@@ -1,7 +1,19 @@
 variable "vm_user_name" { type = string }
-
 variable "vm_user_pwd" { type = string }
+variable "resource_group_name" { type = string }
+variable "storage_account_name" { type = string }
+variable "container_name" { type = string }
+variable "key" { type = string }
 
+  # Update this block with the location of your terraform state file
+  backend "azurerm" {
+    resource_group_name  = var.resource_group_name
+    storage_account_name = var.storage_account_name
+    container_name       = var.container_name
+    key                  = var.key
+   
+  }
+}
 
 resource "azurerm_resource_group" "example" {
   name     = "example-resources"
