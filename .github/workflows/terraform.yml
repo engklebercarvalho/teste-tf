@@ -57,7 +57,11 @@ jobs:
     name: 'Terraform'
     runs-on: ubuntu-latest
     environment: production
-
+    env:
+     ARM_SUBSCRIPTION_ID = ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+     ARM_TENANT_ID = ${{ secrets.AZURE_TENANT_ID }}
+     ARM_CLIENT_ID = ${{ secrets.AZURE_CLIENT_ID }}
+     ARM_CLIENT_SECRET = ${{ secrets.AZURE_CLIENT_SECRET }}
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
       run:
@@ -85,14 +89,7 @@ jobs:
     # Generates an execution plan for Terraform
     - name: Terraform Plan
       run: |
-       terraform plan -input=false -out=infra.tfplan \
-       -var 'azure_client_id=${{ secrets.AZURE_CLIENT_ID }}' \
-       -var 'azure_client_secret=${{ secrets.AZURE_CLIENT_SECRET }}' \
-       -var 'azure_subscription_id=${{ secrets.AZURE_SUBSCRIPTION_ID }}' \
-       -var 'azure_tenant_id=${{ secrets.AZURE_TENANT_ID }}' \
-       -var 'vm_username=${{ secrets.VM_USER_NAME }}' \
-       -var 'vm_password=${{ secrets.VM_USER_PWD }}'
-       
+       terraform plan -input=false -out=infra.tfplan 
 
       # On push to "main", build or change infrastructure according to Terraform configuration files
       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
