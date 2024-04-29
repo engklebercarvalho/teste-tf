@@ -59,7 +59,7 @@ env:
  ARM_TENANT_ID: "${{ secrets.AZURE_TENANT_ID }}"
  ARM_CLIENT_ID: "${{ secrets.AZURE_CLIENT_ID }}"
  ARM_CLIENT_SECRET: "${{ secrets.AZURE_CLIENT_SECRET }}"
- ACTION: Destroy #Usar 'Apply' para realizar o provisionamento ou 'Destroy' para realizar a destruição do ambiente.
+ ACTION: Apply #Usar 'Apply' para realizar o provisionamento ou 'Destroy' para realizar a destruição do ambiente.
  
 jobs:
   terraform:
