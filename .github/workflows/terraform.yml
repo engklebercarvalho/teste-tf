@@ -88,7 +88,7 @@ jobs:
     - name: Check Action
       run: |
        cat action.conf
-       ACTION = $(cat action.conf)
+       $ACTION = $(cat action.conf)
        echo "$ACTION"
 
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
