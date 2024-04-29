@@ -80,16 +80,7 @@ jobs:
       run:
         shell: bash
     steps:
-    - name: Write Backend Config File
-      run: |
-       echo resource_group_name  = "RG-MC" >> backend2.conf
-       echo storage_account_name = "sakleberstatefile" >> backend2.conf
-       echo container_name       = "tfstate" >> backend2.conf
-       echo key                  = "1yB88JRCj+jeRKGFgtB5EJBuR3j7G+vCWR4sAIZJBtVVEqK8dHlV64dt6atyyM6MSsvbf3rIpBGh+AStLY40pA==" >> backend2.conf
-       cat backend2.conf
-       BACKEND_CONFIG=$(realpath backend2.conf)
-       echo $BACKEND_CONFIG
-      
+     
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
       uses: actions/checkout@v4
@@ -102,7 +93,15 @@ jobs:
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
-      run: terraform init -backend-config=$BACKEND_CONFIG 
+      run: |
+       echo resource_group_name  = "RG-MC" >> backend2.conf
+       echo storage_account_name = "sakleberstatefile" >> backend2.conf
+       echo container_name       = "tfstate" >> backend2.conf
+       echo key                  = "1yB88JRCj+jeRKGFgtB5EJBuR3j7G+vCWR4sAIZJBtVVEqK8dHlV64dt6atyyM6MSsvbf3rIpBGh+AStLY40pA==" >> backend2.conf
+       cat backend2.conf
+       BACKEND_CONFIG=$(realpath backend2.conf)
+       echo $BACKEND_CONFIG 
+       terraform init -backend-config=$BACKEND_CONFIG 
 
     # Checks that all Terraform configuration files adhere to a canonical format
     #- name: Terraform Format
