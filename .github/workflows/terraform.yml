@@ -80,6 +80,9 @@ jobs:
       run:
         shell: bash
     steps:
+    - name: Write Backend Config File
+      run: echo "kleber" >> backend.conf 
+      
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
       uses: actions/checkout@v4
