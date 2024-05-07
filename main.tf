@@ -72,9 +72,9 @@ resource "azurerm_linux_virtual_machine" "example" {
 
   source_image_reference {
     publisher = "Canonical"
-    offer     = "0001-com-ubuntu-server-focal"
-    sku       = "20_04-lts-gen2"  # Atualizado para o SKU correto
-    version   = "20.04.202010140"
+    offer     = "0001-com-ubuntu-server-jammy"
+    sku       = "22_04-lts"  # Atualizado para o SKU correto
+    version   = "latest"
   }
 }
 
